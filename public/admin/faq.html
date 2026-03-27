@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Panel – FAQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <h1>Twoja Firma CMS</h1>
+        <nav class="admin-menu">
+          <a href="/admin/dashboard.html">Przegląd</a>
+          <a href="/admin/faq.html">FAQ</a>
+          <a href="/admin/blog.html">Blog</a>
+          <a href="/admin/kb.html">Baza wiedzy</a>
+          <a href="#" id="logout-link">Wyloguj</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <div class="admin-card">
+          <h2 style="margin-top:0">FAQ</h2>
+          <p style="margin-top:0;margin-bottom:1rem;font-size:0.9rem;color:#9ca3af">
+            Zarządzaj najczęściej zadawanymi pytaniami.
+          </p>
+
+          <form id="faq-form" style="margin-bottom:1.25rem">
+            <input type="hidden" id="faq-id" />
+            <div class="field">
+              <label for="faq-question">Pytanie</label>
+              <input id="faq-question" type="text" />
+            </div>
+            <div class="field">
+              <label for="faq-answer">Odpowiedź (HTML)</label>
+              <textarea id="faq-answer" data-rich-editor rows="14"></textarea>
+            </div>
+            <div class="field">
+              <label for="faq-sort">Kolejność</label>
+              <input id="faq-sort" type="text" value="0" />
+            </div>
+            <div class="field-inline" style="margin-bottom:0.75rem">
+              <input id="faq-published" type="checkbox" checked />
+              <label for="faq-published">Opublikuj (widoczne w serwisie)</label>
+            </div>
+            <div class="field-inline" style="margin-bottom:0.75rem">
+              <input id="faq-on-home" type="checkbox" />
+              <label for="faq-on-home">Pokaż na stronie głównej</label>
+            </div>
+            <button class="btn btn-primary" type="submit">Zapisz</button>
+            <button class="btn btn-secondary" type="button" id="faq-reset">
+              Wyczyść formularz
+            </button>
+          </form>
+
+          <table class="admin-table" id="faq-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Pytanie</th>
+                <th>Kolejność</th>
+                <th>Status</th>
+                <th>Strona główna</th>
+                <th>Akcje</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script src="/js/admin-auth-guard.js"></script>
+    <script src="/js/admin-rich-editor.js"></script>
+    <script src="/js/admin-faq.js"></script>
+  </body>
+  </html>
+

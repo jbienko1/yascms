@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Panel – Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <h1>Twoja Firma CMS</h1>
+        <nav class="admin-menu">
+          <a href="/admin/dashboard.html">Przegląd</a>
+          <a href="/admin/faq.html">FAQ</a>
+          <a href="/admin/blog.html">Blog</a>
+          <a href="/admin/kb.html">Baza wiedzy</a>
+          <a href="#" id="logout-link">Wyloguj</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <div class="admin-card">
+          <h2 style="margin-top:0">Blog</h2>
+          <p style="margin-top:0;margin-bottom:1rem;font-size:0.9rem;color:#9ca3af">
+            Zarządzaj wpisami na blogu.
+          </p>
+
+          <form id="blog-form" style="margin-bottom:1.25rem">
+            <input type="hidden" id="blog-id" />
+            <div class="field">
+              <label for="blog-title">Tytuł</label>
+              <input id="blog-title" type="text" />
+            </div>
+            <div class="field">
+              <label for="blog-slug">Slug (adres URL)</label>
+              <input id="blog-slug" type="text" />
+            </div>
+            <div class="field">
+              <label for="blog-content">Treść (HTML)</label>
+              <textarea id="blog-content" data-rich-editor rows="14"></textarea>
+            </div>
+            <div class="field-inline" style="margin-bottom:0.75rem">
+              <input id="blog-published" type="checkbox" checked />
+              <label for="blog-published">Opublikowane</label>
+            </div>
+            <button class="btn btn-primary" type="submit">Zapisz</button>
+            <button class="btn btn-secondary" type="button" id="blog-reset">
+              Wyczyść formularz
+            </button>
+          </form>
+
+          <table class="admin-table" id="blog-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tytuł</th>
+                <th>Slug</th>
+                <th>Status</th>
+                <th>Akcje</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script src="/js/admin-auth-guard.js"></script>
+    <script src="/js/admin-rich-editor.js"></script>
+    <script src="/js/admin-blog.js"></script>
+  </body>
+  </html>
+

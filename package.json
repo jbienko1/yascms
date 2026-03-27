@@ -1,0 +1,23 @@
+{
+  "name": "yascms",
+  "version": "1.0.0",
+  "description": "Prosty serwis firmowy z CMS (FAQ, Blog, Baza wiedzy) oparty na Node.js, Express i SQLite.",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
