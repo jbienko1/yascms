@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Panel administracyjny – logowanie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body style="background:#020617;color:#e5e7eb">
+    <div
+      style="
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      "
+    >
+      <div class="admin-card" style="max-width: 360px; width: 100%">
+        <h1 style="margin-top:0;margin-bottom:0.75rem;font-size:1.25rem">
+          Panel administracyjny
+        </h1>
+        <p style="margin-top:0;margin-bottom:1.25rem;font-size:0.9rem;color:#9ca3af">
+          Zaloguj się hasłem administratora, aby zarządzać FAQ, Blogiem i Bazą
+          wiedzy.
+        </p>
+        <form id="login-form">
+          <div class="field">
+            <label for="password">Hasło administratora</label>
+            <input id="password" type="password" autocomplete="current-password" />
+          </div>
+          <button class="btn btn-primary" type="submit">Zaloguj</button>
+          <div
+            id="login-error"
+            style="display:none;margin-top:0.75rem;color:#fca5a5;font-size:0.85rem"
+          ></div>
+        </form>
+      </div>
+    </div>
+    <script src="/js/admin-auth.js"></script>
+  </body>
+  </html>
+

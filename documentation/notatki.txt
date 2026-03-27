@@ -1,0 +1,26 @@
+# stare
+rc-service nginx start
+--trzeba zainstalować aplikację pm2
+sudo npm install pm2 -g
+
+pm2 list
+pm2 start server.js --name "yascms"
+
+
+https://frog02-40333.wykr.es/admin/
+
+
+# nowa instrokcja 
+
+
+
+## instalacja zależności 
+cd yascms
+npm install 
+
+### testowe uruchomienie (nie jako serwer) 
+cd yascms
+npm start 
+
+## uruchamianie 
+pm2 start server.js --name "yascms"

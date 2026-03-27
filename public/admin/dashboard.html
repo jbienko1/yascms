@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Panel administracyjny – Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <h1>Twoja Firma CMS</h1>
+        <p style="font-size:0.85rem;color:#9ca3af">
+          Prosty panel do zarządzania treścią.
+        </p>
+        <nav class="admin-menu">
+          <a href="/admin/dashboard.html">Przegląd</a>
+          <a href="/admin/faq.html">FAQ</a>
+          <a href="/admin/blog.html">Blog</a>
+          <a href="/admin/kb.html">Baza wiedzy</a>
+          <a href="#" id="logout-link">Wyloguj</a>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <div class="admin-card">
+          <h2 style="margin-top:0">Przegląd</h2>
+          <p>
+            Z tego panelu możesz zarządzać dynamicznymi sekcjami serwisu:
+            FAQ, Blogiem oraz Bazą wiedzy.
+          </p>
+          <ul>
+            <li>FAQ – dodawanie i edycja pytań/odpowiedzi.</li>
+            <li>Blog – publikacja wpisów i aktualności.</li>
+            <li>Baza wiedzy – artykuły pomocy oraz dokumentacja.</li>
+          </ul>
+        </div>
+      </main>
+    </div>
+    <script src="/js/admin-auth-guard.js"></script>
+  </body>
+  </html>
+
