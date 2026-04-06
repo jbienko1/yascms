@@ -85,6 +85,9 @@ async function initDb() {
       'ALTER TABLE kb_articles ADD COLUMN show_on_home INTEGER DEFAULT 0'
     );
   } catch (e) {}
+  try {
+    await run('ALTER TABLE blog_posts ADD COLUMN show_on_home INTEGER DEFAULT 0');
+  } catch (e) {}
 }
 
 module.exports = {

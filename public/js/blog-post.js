@@ -21,7 +21,7 @@ async function loadBlogPost() {
     const date = new Date(post.created_at).toLocaleDateString('pl-PL');
     container.innerHTML = `
       <h1 class="page-title" style="margin-top:0">${post.title}</h1>
-      <div class="page-subtitle">Opublikowano: ${date}</div>
+      <div class="pub-date">Opublikowano: ${date}</div>
       <div>${post.content}</div>
     `;
   } catch (err) {

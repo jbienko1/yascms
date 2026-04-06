@@ -40,3 +40,32 @@ async function loadHome() {
 
 loadHome();
 
+async function loadHomeBlog() {
+  const container = document.getElementById('home-blog');
+  if (!container) return;
+
+  try {
+    const res = await fetch('/api/blog/home');
+    if (!res.ok) throw new Error('Fetch error');
+    const posts = await res.json();
+    if (!posts.length) {
+      container.innerHTML = '<p>Brak aktualności.</p>';
+      return;
+    }
+    container.innerHTML = `
+      <div class="cards">
+        ${posts.map(p => `
+          <article class="card">
+            <h3><a href="/blog-post.html?slug=${encodeURIComponent(p.slug)}">${p.title}</a></h3>
+            <p class="list-item-meta">${new Date(p.created_at).toLocaleDateString('pl-PL')}</p>
+          </article>
+        `).join('')}
+      </div>
+    `;
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = '<p>Błąd ładowania aktualności.</p>';
+  }
+}
+
+loadHomeBlog();

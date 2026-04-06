@@ -53,6 +53,8 @@ function fillBlogForm(post) {
   document.getElementById('blog-slug').value = post.slug;
   setRichHtml('blog-content', post.content || '');
   document.getElementById('blog-published').checked = !!post.is_published;
+  const onHome = document.getElementById('blog-on-home');
+  if (onHome) onHome.checked = !!post.show_on_home;
 }
 
 async function deleteBlog(id) {
@@ -76,7 +78,8 @@ if (blogForm) {
       title: document.getElementById('blog-title').value,
       slug: document.getElementById('blog-slug').value,
       content: getRichHtml('blog-content'),
-      is_published: document.getElementById('blog-published').checked
+      is_published: document.getElementById('blog-published').checked,
+      show_on_home: document.getElementById('blog-on-home')?.checked ?? false
     };
     const url = id ? '/api/admin/blog/' + id : '/api/admin/blog';
     const method = id ? 'PUT' : 'POST';

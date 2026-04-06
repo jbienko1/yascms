@@ -16,6 +16,18 @@ publicRouter.get('/blog', async (req, res) => {
   }
 });
 
+publicRouter.get('/blog/home', async (req, res) => {
+  try {
+    const rows = await all(
+      'SELECT id, title, slug, created_at FROM blog_posts WHERE is_published = 1 AND show_on_home = 1 ORDER BY created_at DESC'
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 publicRouter.get('/blog/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
@@ -36,7 +48,7 @@ publicRouter.get('/blog/:slug', async (req, res) => {
 adminRouter.get('/blog', async (req, res) => {
   try {
     const rows = await all(
-      'SELECT id, title, slug, content, created_at, updated_at, is_published FROM blog_posts ORDER BY created_at DESC'
+      'SELECT id, title, slug, content, created_at, updated_at, is_published, show_on_home FROM blog_posts ORDER BY created_at DESC'
     );
     res.json(rows);
   } catch (err) {
@@ -47,20 +59,16 @@ adminRouter.get('/blog', async (req, res) => {
 
 adminRouter.post('/blog', async (req, res) => {
   try {
-    const { title, slug, content, is_published = 1 } = req.body;
+    const { title, slug, content, is_published = 1, show_on_home = 0 } = req.body;
     if (!title || !slug || !content) {
-      return res
-        .status(400)
-        .json({ error: 'Title, slug and content are required' });
+      return res.status(400).json({ error: 'Title, slug and content are required' });
     }
     const now = new Date().toISOString();
     const result = await run(
-      'INSERT INTO blog_posts (title, slug, content, created_at, updated_at, is_published) VALUES (?, ?, ?, ?, ?, ?)',
-      [title, slug, content, now, now, is_published ? 1 : 0]
+      'INSERT INTO blog_posts (title, slug, content, created_at, updated_at, is_published, show_on_home) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [title, slug, content, now, now, is_published ? 1 : 0, show_on_home ? 1 : 0]
     );
-    const created = await get('SELECT * FROM blog_posts WHERE id = ?', [
-      result.lastID
-    ]);
+    const created = await get('SELECT * FROM blog_posts WHERE id = ?', [result.lastID]);
     res.status(201).json(created);
   } catch (err) {
     console.error(err);
@@ -71,20 +79,21 @@ adminRouter.post('/blog', async (req, res) => {
 adminRouter.put('/blog/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, slug, content, is_published } = req.body;
+    const { title, slug, content, is_published, show_on_home } = req.body;
     const existing = await get('SELECT * FROM blog_posts WHERE id = ?', [id]);
     if (!existing) {
       return res.status(404).json({ error: 'Not found' });
     }
     const now = new Date().toISOString();
     await run(
-      'UPDATE blog_posts SET title = ?, slug = ?, content = ?, updated_at = ?, is_published = ? WHERE id = ?',
+      'UPDATE blog_posts SET title = ?, slug = ?, content = ?, updated_at = ?, is_published = ?, show_on_home = ? WHERE id = ?',
       [
         title ?? existing.title,
         slug ?? existing.slug,
         content ?? existing.content,
         now,
         is_published !== undefined ? (is_published ? 1 : 0) : existing.is_published,
+        show_on_home !== undefined ? (show_on_home ? 1 : 0) : existing.show_on_home,
         id
       ]
     );
@@ -111,4 +120,3 @@ module.exports = {
   publicRouter,
   adminRouter
 };
-

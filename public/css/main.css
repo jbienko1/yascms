@@ -228,6 +228,34 @@ a:hover {
 
 .section {
   padding: 28px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Rozmyte tło – pseudo-element dziedziczy background-image z atrybutu inline */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: -20px; /* naddatek niweluje efekt jasnej obwódki na krawędziach */
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  z-index: 0;
+}
+/* Delikatna nakładka poprawiająca kontrast treści na tle zdjęcia */
+.section[style*='background-image']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 0;
+}
+
+/* Treść sekcji ponad rozmytym tłem */
+.section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .section h2 {
@@ -257,6 +285,26 @@ a:hover {
 .card p {
   margin: 0;
   color: var(--muted);
+}
+
+.brands-grid {
+  align-items: stretch;
+}
+
+.brand-card {
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-card .brand-logo {
+  display: block;
+  width: 100%;
+  max-width: 190px;
+  height: 72px;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 .list-check {
@@ -290,6 +338,22 @@ a:hover {
   margin-bottom: 10px;
 }
 
+.map-wrap {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.map-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .badges {
   display: flex;
   gap: 10px;
@@ -321,6 +385,13 @@ a:hover {
 
 .page-subtitle {
   color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.pub-date {
+  color: var(--silver);
+  font-size: 0.9rem;
+  font-style: italic;
   margin-bottom: 1.25rem;
 }
 
@@ -539,6 +610,38 @@ button {
 
 .list-item-meta {
   color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.blog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.blog-list-item {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.blog-list-item-title {
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.blog-list-item-title a {
+  color: var(--ink-600);
+}
+
+.blog-list-item-title a:hover {
+  color: var(--brand);
+}
+
+.blog-list-item-meta {
+  color: var(--silver);
+  font-size: 0.9rem;
+  font-style: italic;
+
   font-size: 0.85rem;
 }
 
@@ -824,5 +927,9 @@ th {
 }
 
 .opaque {
-  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(227, 230, 232, 0.9);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
 }

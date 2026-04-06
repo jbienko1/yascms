@@ -13,18 +13,18 @@ async function loadBlogList() {
       return;
     }
     container.innerHTML = `
-      <ul class="list">
+      <ul class="blog-list">
         ${posts
           .map((p) => {
             const date = new Date(p.created_at).toLocaleDateString('pl-PL');
             return `
-              <li class="list-item">
-                <div class="list-item-title">
+              <li class="blog-list-item">
+                <div class="blog-list-item-title">
                   <a href="/blog-post.html?slug=${encodeURIComponent(
                     p.slug
                   )}">${p.title}</a>
                 </div>
-                <div class="list-item-meta">Dodano: ${date}</div>
+                <div class="blog-list-item-meta">${date}</div>
               </li>
             `;
           })
