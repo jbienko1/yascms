@@ -55,8 +55,8 @@ async function loadHomeBlog() {
     container.innerHTML = `
       <div class="cards">
         ${posts.map(p => `
-          <article class="card">
-            <h3><a href="/blog-post.html?slug=${encodeURIComponent(p.slug)}">${p.title}</a></h3>
+          <article class="card" role="link" tabindex="0" onclick="window.location.href='/blog-post.html?slug=${encodeURIComponent(p.slug)}'" onkeydown="if(event.key === 'Enter' || event.key === ' '){ window.location.href='/blog-post.html?slug=${encodeURIComponent(p.slug)}'; }" style="cursor: pointer">
+            <h3>${p.title}</h3>
             <p class="list-item-meta">${new Date(p.created_at).toLocaleDateString('pl-PL')}</p>
           </article>
         `).join('')}
