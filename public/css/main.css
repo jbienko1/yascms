@@ -642,6 +642,15 @@ button {
   font-size: 0.85rem;
 }
 
+.kb-list-item-meta {
+  color: var(--silver);
+  font-size: 0.9rem;
+  font-style: italic;
+
+  font-size: 0.85rem;
+}
+
+
 .blog-list {
   list-style: none;
   padding: 0;

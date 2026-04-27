@@ -35,7 +35,7 @@ async function loadKbList() {
                         a.slug
                       )}">${a.title}</a>
                     </div>
-                    <div class="list-item-meta">Dodano: ${date}</div>
+                    <div class="kb-list-item-meta">${date}</div>
                   </li>
                 `;
               })
